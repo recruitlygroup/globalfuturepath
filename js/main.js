@@ -17,3 +17,14 @@ document.querySelectorAll("form.form").forEach(f => f.addEventListener("submit",
   } catch { s.textContent = "Could not send. Please email info@globalfuturepathtraining.com."; }
   b.disabled = false;
 }));
+
+// ---- content from data.js ----
+if(!SHOW_SAMPLE_BADGE) document.body.classList.add("no-badge");
+const $=id=>document.getElementById(id);
+$("stats").innerHTML=SITE.stats.map(x=>`<div><b>${x.n}</b><span>${x.l}</span></div>`).join("");
+$("grads").innerHTML=SITE.graduates.map(g=>`<article class="card c1"><h3>${g.name}</h3><p><b>${g.skill}</b><br>${g.level}</p><p>${g.note}</p><a href="#contact">Request CV</a></article>`).join("");
+$("trainerlist").innerHTML=SITE.trainers.map(t=>`<article class="card c2"><h3>${t.name}</h3><p><b>${t.role}</b></p><p>${t.bio}</p></article>`).join("");
+$("quotes").innerHTML=SITE.testimonials.map(t=>`<article class="card quote">&ldquo;${t.q}&rdquo;<small>${t.by}</small></article>`).join("");
+$("faqlist").innerHTML=SITE.faqs.map(f=>`<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
+if(MAP_EMBED) $("map").innerHTML=`<iframe src="${MAP_EMBED}" loading="lazy" title="Map"></iframe>`;
+$("social").innerHTML=Object.entries(SOCIAL).filter(e=>e[1]).map(e=>`<a href="${e[1]}" target="_blank" rel="noopener">${e[0][0].toUpperCase()+e[0].slice(1)}</a>`).join("");
